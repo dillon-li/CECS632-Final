@@ -7,16 +7,15 @@ response = requests.get(url)
 tree = ElementTree.fromstring(response.content)
 #print(tree)
 
-for child in tree:
-    #x = child.findall('info')
-    #print (x)
-    #if x != None:
-    #    print(child.attrib)
-    for anime in child:
-        text = anime.itertext()
-        if anime.tag == 'info':
+for anime in tree:
+    props = anime.attrib
+    medium = props['type']
+    print (medium)
+    for info in anime:
+        text = info.itertext()
+        if info.tag == 'info':
             #print("This is info")
-            att = anime.attrib
+            att = info.attrib
             print(att['type'])
         #print(x)
         #print(att.tag)
